@@ -251,32 +251,32 @@ class Settings(object):
     @staticmethod
     def VerifyPaths():
         MyGlobals.Logger.info("Checking paths")
-        if not (Settings.__VerifyProgramPath("MediaInfo", ['../../mediainfo', "--version"]) or
+        if not (Settings.__VerifyProgramPath("MediaInfo", ['mediainfo', "--version"]) or
                 Settings.__VerifyProgramPath("MediaInfo", [Settings.MediaInfoPath, "--version"])):
                 return False
 
         if Settings.IsMpvEnabled():
-            if not (Settings.__VerifyProgramPath("mpv", ['../../mpv']) or
+            if not (Settings.__VerifyProgramPath("mpv", ['mpv']) or
                     Settings.__VerifyProgramPath("mpv", [Settings.MpvPath])):
                 return False
         elif Settings.IsMplayerEnabled():
-            if not (Settings.__VerifyProgramPath("mplayer", ['../../mplayer']) or
+            if not (Settings.__VerifyProgramPath("mplayer", ['mplayer']) or
                     Settings.__VerifyProgramPath("mplayer", [Settings.MplayerPath])):
                 return False
         else:
-            if not (Settings.__VerifyProgramPath("ffmpeg", ['../../ffmpeg', "--help"]) or
+            if not (Settings.__VerifyProgramPath("ffmpeg", ['ffmpeg', "--help"]) or
                     Settings.__VerifyProgramPath("ffmpeg", [Settings.FfmpegPath, "--help"])):
                 return False
 
         # Optional
-        if len(Settings.UnrarPath) > 0 and (not (Settings.__VerifyProgramPath("unrar", ['../../unrar']) or
+        if len(Settings.UnrarPath) > 0 and (not (Settings.__VerifyProgramPath("unrar", ['unrar']) or
                                                  Settings.__VerifyProgramPath("unrar", [Settings.UnrarPath]))):
             return False
 
         # Optional
         if len(Settings.ImageMagickConvertPath) > 0 and (
         not (Settings.__VerifyProgramPath("ImageMagick Convert", [Settings.ImageMagickConvertPath, "--version"]) or
-             Settings.__VerifyProgramPath("ImageMagick Convert", ['../../convert', "--version"]))):
+             Settings.__VerifyProgramPath("ImageMagick Convert", ['convert', "--version"]))):
             return False
 
         return True
