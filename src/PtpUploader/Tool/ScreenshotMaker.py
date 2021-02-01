@@ -106,7 +106,8 @@ class ScreenshotMaker:
 			item = SortItem( file )
 			filesToSort.append( item )
 
-		filesToSort.sort( cmp = SortItem.Compare )
+		if len(filesToSort) > 1:
+			filesToSort.sort( key = SortItem.Compare )
 
 		files = []
 		for item in filesToSort:
