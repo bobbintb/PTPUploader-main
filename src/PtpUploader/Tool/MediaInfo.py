@@ -48,7 +48,7 @@ class MediaInfo:
 		else:
 			thread.join()
 
-		if thread.isAlive():
+		if thread.is_alive():
 			try:
 				self.MediaInfoProcess.terminate()
 			finally:
