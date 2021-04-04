@@ -212,6 +212,8 @@ class Settings(object):
         Settings.TorrentClientAddress = Settings.__GetDefault(configParser, "Settings", "TorrentClientAddress",
                                                               "127.0.0.1")
         Settings.TorrentClientPort = Settings.__GetDefault(configParser, "Settings", "TorrentClientPort", "9091")
+        Settings.TorrentClientUsername = Settings.__GetDefault(configParser, "Settings", "TorrentClientUsername", "admin")
+        Settings.TorrentClientPassword = Settings.__GetDefault(configParser, "Settings", "TorrentClientPassword", "admin")
 
         # Create the announcement directory.
         # Invalid announcement directory is within the announcement directory, so we don't have to make the announcement directory separately.
