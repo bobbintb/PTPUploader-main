@@ -13,9 +13,9 @@ class Qbittorrent:
 	# Returns with the info hash of the torrent.
 	def AddTorrent(self, logger=None, torrentPath=None, downloadPath=None):
 		logger.info( "Initiating the download of torrent '%s' with qBittorrent to '%s'." % ( torrentPath, downloadPath ) );
-		torrent = self.qbittorrent.torrents_add(torrent_files=torrentPath, save_path=downloadPath)
+		self.qbittorrent.torrents_add(torrent_files=torrentPath, save_path=downloadPath)
 		# Not sure if returning hash works yet.
-		return torrent.hashString
+		return (subprocess.check_output(f'lstor {torrentPath} -o __hash__ -q', stderr=subprocess.STDOUT)).decode("utf-8")
 
 	def AddTorrentSkipHashCheck(self, logger, torrentPath, downloadPath):
 		logger.info( "Adding torrent '%s' without hash checking to qBittorrent to '%s'." % ( torrentPath, downloadPath ) );
