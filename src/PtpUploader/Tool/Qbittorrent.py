@@ -22,16 +22,14 @@ class Qbittorrent:
 		torrent = self.qbittorrent.torrents_add(torrent_files=torrentPath, save_path=downloadPath, is_skip_checking=True)
 		return torrent.hashString
 
-	def IsTorrentFinished(self, logger, infoHash):
+	def IsTorrentFinished(self, infoHash):
 		try:
-			# TODO: not the most sophisticated way.
-			# Even a watch dir with Pyinotify would be better probably. rTorrent could write the info hash to a directory watched by us.
-			# completed = self.proxy.d.get_complete( infoHash );
-			if (self.transmission.get_torrent(infoHash).doneDate > 0):
-				return True
+			for thing in self.qbittorrent.torrents_info():
+				if thing.hash == infoHash:
+					if thing.state_enum.is_complete:
+						return True
 		except Exception:
-			logger.exception( "Got exception while trying to check torrent's completion status. Info hash: '%s'." % infoHash );
-
+			logger.exception("Got exception while trying to check torrent's completion status. Info hash: '%s'." % infoHash);
 		return False
 
 	# It doesn't delete the data.
